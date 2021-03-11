@@ -1,0 +1,16 @@
+img{height: 100px;
+    width: 100px;
+
+}
+table{
+    border: black solid 2px;
+    text-align: center;
+    margin: auto;
+}
+tr{
+    border: 2px solid black;
+}
+td{
+    width: 300px;
+    border: 2px solid black;
+}
