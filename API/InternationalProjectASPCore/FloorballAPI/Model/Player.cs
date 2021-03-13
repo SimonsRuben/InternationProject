@@ -10,7 +10,9 @@ namespace FloorballAPI.Model
     {
         public string Name { get; set; }
         public int ID { get; set; }
+        public int Icon { get; set; }
         public List<Match> Matches { get; set; }
+        [JsonIgnore]
         public Team Team { get; set; }
 
         //[JsonIgnore]
