@@ -1,20 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace FloorballAPI.Model
 {
-    public class Player
+    public class Team
     {
-        public string Name { get; set; }
         public int ID { get; set; }
+        public string Name { get; set; }
+        public List<Player> Players { get; set; }
         public List<Match> Matches { get; set; }
-        public Team Team { get; set; }
-
-        //[JsonIgnore]
-        //public List<Data> Data { get; set; }
-
     }
 }

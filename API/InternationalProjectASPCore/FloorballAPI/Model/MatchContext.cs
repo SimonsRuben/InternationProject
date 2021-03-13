@@ -12,5 +12,9 @@ namespace FloorballAPI.Model
         {
         }
         public DbSet<Player> Players { get; set; }
+        public DbSet<Match> Matches { get; set; }
+        public DbSet<Team> Teams { get; set; }
+        //public DbSet<Data> Data { get; set; }
+        //public DbSet<DataPoint> DataPoints { get; set; }
     }
 }

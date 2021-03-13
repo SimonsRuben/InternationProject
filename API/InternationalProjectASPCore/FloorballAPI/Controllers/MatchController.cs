@@ -29,5 +29,16 @@ namespace FloorballAPI.Controllers
             }
             return Ok(person);
         }
+        [Route("test")]
+        [HttpGet]
+        public IActionResult testPerson(string data, [FromHeader] int data2, [FromQuery] int data3)
+        {
+            var person = context.Players.Where(b => b.Name == data);
+            if (person == null)
+            {
+                return NotFound();
+            }
+            return Ok(person);
+        }
     }
 }
