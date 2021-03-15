@@ -1,0 +1,23 @@
+main{
+    display: flex;
+}
+div{
+    display: flexbox;
+    flex-grow: 1;
+    border: 2px black solid;
+
+}
+table{
+    display: inline-block;
+    border-collapse: collapse;
+    border: 1px black solid;
+    text-align: center;
+}
+tr{
+    border: 1px black solid;
+}
+td{
+    width: 200px;
+    border: 1px black solid;
+}
+
