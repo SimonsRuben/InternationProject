@@ -1,0 +1,28 @@
+main{
+    display: flex;
+}
+div{
+    display: flexbox;
+    flex-grow: 1;
+    border: 2px black solid;
+    text-align: center;
+}
+table{
+    display: inline-block;
+    border-collapse: collapse;
+    border: 1px black solid;
+}
+tr{
+    border: 1px black solid;
+}
+td{
+    width: 200px;
+    border: 1px black solid;
+}
+select{
+    width: 200px;
+    text-align: center;
+}
+#teamselect{
+    margin-right: 70px;
+}
