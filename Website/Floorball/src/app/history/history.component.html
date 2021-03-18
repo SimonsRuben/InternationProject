@@ -14,28 +14,18 @@
         
         <table id="match">
             <tr>
-                <th>Team</th>
-                <th>Name</th>
-                <th>Shots</th>
-                <th>Average shot speed</th>
+                <th>Start hour</th>
+                <th>Date </th>
+                <th>Team 1</th>
+                <th>Team 2</th>
+                <th>Match link</th>
             </tr>
-            <tr>
-                <td>Tea</td>
-                <td>Name</td>
-                <td>Shots</td>
-                <td>Average shot speed</td>
-            </tr>
-            <tr>
-                <td>Team</td>
-                <td>Name</td>
-                <td>Shots</td>
-                <td>Average shot speed</td>
-            </tr>
-            <tr>
-                <td>Team</td>
-                <td>Name</td>
-                <td>Shots</td>
-                <td>Average shot speed</td>
+            <tr *ngFor="let match of matcheslijst">
+                <td>{{match.start | date : 'h:mm a'}}</td>
+                <td>{{match.start | date : 'MMMM d, y'}}</td>
+                <td>{{match.teams[0]}}</td>
+                <td>{{match.teams[1]}}</td>
+                <td><button (click)="viewmatch(1)">View match</button></td>
             </tr>
         </table>
 
