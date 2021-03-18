@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31005.135
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FloorballAPI", "FloorballAPI\FloorballAPI.csproj", "{B71DBF23-7090-4217-8EE7-D0BD3B47484A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B71DBF23-7090-4217-8EE7-D0BD3B47484A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B71DBF23-7090-4217-8EE7-D0BD3B47484A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B71DBF23-7090-4217-8EE7-D0BD3B47484A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B71DBF23-7090-4217-8EE7-D0BD3B47484A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AF58308B-F269-49F1-B346-F63AB8BBF110}
+	EndGlobalSection
+EndGlobal
