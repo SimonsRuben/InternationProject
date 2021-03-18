@@ -48,6 +48,7 @@ namespace FloorballAPI
                 endpoints.MapControllers();
             });
             DBinitializer.Initialize(libContext);
+            app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
         }
     }
 }
