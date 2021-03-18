@@ -1,0 +1,30 @@
+ul {
+    list-style-type: none;
+    overflow: hidden;
+    background-color: #333;
+    text-align: center;
+  }
+  
+  li{
+      display: inline-block;
+  }
+  
+  li a {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  /* Change the link color to #111 (black) on hover */
+  li a:hover {
+    background-color:green;
+  }
+nav{
+  padding: 0;
+  margin: 0;
+}
+body{
+  margin: 0;
+}
