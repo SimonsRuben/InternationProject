@@ -18,6 +18,21 @@ namespace FloorballAPI.Controllers
         {
             context = myContext;
         }
+        [Route("Data")]
+        [HttpGet]
+        public IActionResult GetData(string playerName, int? matchid) //Alle data voor een speler bij 1 match
+        {
+            if (!string.IsNullOrWhiteSpace(playerName) || !(matchid == null || matchid < 0))
+            {
+                if (context.Data.Any(d => d.Player.Name == playerName && d.Match.ID == matchid))
+                {
+                    var data = context.Data.Where(d => d.Match.ID == matchid).Where(d => d.Player.Name == playerName).Select(d => new { d.Match.Start, d.Player.Name, d.Player.ID, d.Player.Icon, d.Accel, d.Linear, d.Orient, d.Hits });
+                    return Ok(data);
+                }
+                return NotFound();
+            }
+            return NotFound();
+        }
 
         [Route("Teams")]
         [HttpGet]
@@ -42,9 +57,9 @@ namespace FloorballAPI.Controllers
             if (!string.IsNullOrWhiteSpace(playerName))
             {
                 if (people.Any(t => t.Name == playerName))
-                     return Ok(people.Where(t => t.Name == playerName).Select(p => new { p.Name, p.Icon, p.Team, p.ID, Matches = p.Matches.Select(m => m.Start) }));
+                     return Ok(people.Where(t => t.Name == playerName).Select(p => new { p.Name, p.Icon, p.Team, p.ID, Matches = p.Matches.Select(m => new { m.Start, m.ID })}));
                 else
-                    people = null;
+                    return NotFound();
             }
             if (people == null)
                 return NotFound();
@@ -54,7 +69,7 @@ namespace FloorballAPI.Controllers
         [HttpGet]
         public IActionResult GetMatches() //Laat alle matches zien en de teams die in deze matches gespeeld hebben
         {
-            var matches = context.Matches.Select(m => new { m.Start, Teams = m.Teams.Select(t => t.Name) });
+            var matches = context.Matches.Select(m => new { m.ID, m.Start, Teams = m.Teams.Select(t => t.Name) });
             if (matches == null)
             {
                 return NotFound();
