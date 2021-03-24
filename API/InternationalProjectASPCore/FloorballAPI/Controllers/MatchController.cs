@@ -76,7 +76,16 @@ namespace FloorballAPI.Controllers
             }
             return Ok(matches.OrderBy(m => m.Start));
         }
-
-
+        [Route("Matches/{id}")]
+        [HttpGet]
+        public IActionResult GetMatch(int id) //Laat alle info over een specifieke match zien
+        {
+            if (context.Matches.Any(m => m.ID == id))
+            {
+                var matches = context.Matches.Where(m => m.ID == id).Select(m => new { m.ID, m.Start, Teams = m.Teams.Select(t => t.Name), Players = m.Players.Select(p => p.Name) });
+                return Ok(matches);
+            }
+            return NotFound();
+        }
     }
 }
