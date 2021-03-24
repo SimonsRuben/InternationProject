@@ -82,7 +82,7 @@ namespace FloorballAPI.Controllers
         {
             if (context.Matches.Any(m => m.ID == id))
             {
-                var matches = context.Matches.Where(m => m.ID == id).Select(m => new { m.ID, m.Start, Teams = m.Teams.Select(t => t.Name), Players = m.Players.Select(p => p.Name) });
+                var matches = context.Matches.Where(m => m.ID == id).Select(m => new { m.ID, m.Start, Teams = m.Teams.Select(t => t.Name), Players = m.Players.Select(p => new { p.Name, TeamName=p.Team.Name })});
                 return Ok(matches);
             }
             return NotFound();
