@@ -13,5 +13,6 @@ namespace FloorballAPI.Model
         public List<Player> Players { get; set; }
         public List<Data> Data { get; set; }
         public DateTime Start { get; set; }
+        public bool Active { get; set; }
     }
 }

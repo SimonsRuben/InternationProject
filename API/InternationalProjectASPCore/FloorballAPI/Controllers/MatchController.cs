@@ -18,21 +18,6 @@ namespace FloorballAPI.Controllers
         {
             context = myContext;
         }
-        [Route("Data")]
-        [HttpGet]
-        public IActionResult GetData(string playerName, int? matchid) //Alle data voor een speler bij 1 match
-        {
-            if (!string.IsNullOrWhiteSpace(playerName) || !(matchid == null || matchid < 0))
-            {
-                if (context.Data.Any(d => d.Player.Name == playerName && d.Match.ID == matchid))
-                {
-                    var data = context.Data.Where(d => d.Match.ID == matchid).Where(d => d.Player.Name == playerName).Select(d => new { d.Match.Start, d.Player.Name, d.Player.ID, d.Player.Icon, d.Accel, d.Linear, d.Orient, d.Hits });
-                    return Ok(data);
-                }
-                return NotFound();
-            }
-            return NotFound();
-        }
 
         [Route("Teams")]
         [HttpGet]
@@ -76,6 +61,17 @@ namespace FloorballAPI.Controllers
             }
             return Ok(matches.OrderBy(m => m.Start));
         }
+        /*
+        // WIP
+        [Route("Matches")]
+        [HttpPost]
+        public IActionResult CreateMatch([FromBody] Match match)
+        {
+            context.Matches.Add(match);
+            context.SaveChanges();
+            return Created($"http://localhost:61379/api/v1/Matches/{match.ID}", match);
+        }*/
+
         [Route("Matches/{id}")]
         [HttpGet]
         public IActionResult GetMatch(int id) //Laat alle info over een specifieke match zien
