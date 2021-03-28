@@ -38,6 +38,7 @@ namespace FloorballAPI
             {
                 app.UseDeveloperExceptionPage();
             }
+            
 
             app.UseRouting();
 
@@ -47,6 +48,7 @@ namespace FloorballAPI
             {
                 endpoints.MapControllers();
             });
+            
             DBinitializer.Initialize(libContext);
         }
     }
