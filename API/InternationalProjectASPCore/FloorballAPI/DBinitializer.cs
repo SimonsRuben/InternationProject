@@ -10,7 +10,7 @@ namespace FloorballAPI
     {
         public static void Initialize(MatchContext context)
         {
-            //context.Database.EnsureDeleted();
+            context.Database.EnsureDeleted();
             context.Database.EnsureCreated();
             
             if (!context.Matches.Any())
