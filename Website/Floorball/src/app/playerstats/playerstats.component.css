@@ -27,5 +27,5 @@ select{
     margin-right: 70px;
 }
 div.chart{
-    margin: auto;
+    border: none;
 }

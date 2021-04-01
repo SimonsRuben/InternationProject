@@ -69,5 +69,4 @@ export class PlayerstatsComponent implements OnInit {
     chartAverageSwing.render();
     chartHitsPerGame.render();
   }
-
 }
