@@ -1,35 +1,30 @@
 <main>
     <div>
         <img [src]="photoicon" alt="" width="auto" height="200px">
-        <table>
+        <table *ngIf="player != null" >
             <tr>
                 <th colspan="2" >Player information</th>
             </tr>
             <tr>
                 <td>Player name:</td>
-                <td><p>test name</p></td>
+                <td><p>{{player.name}}</p></td>
             </tr>
             <tr>
                 <td>Team Name:</td>
-                <td><p>testname</p></td>
-            </tr>
-            <tr>
-                <td>Age:</td>
-                <td><p>20</p></td>
+                <td><p>{{player.team.name}}</p></td>
             </tr>
         </table>
     </div>
     <div>
         <select name="" id="teamselect" >
-            <option selected="selected">Select your team</option>
-            <option value="">team1</option>
-            <option value="">team2</option>
+            <option selected="selected"(click)="getallplayers(null)">Select your team</option>
+            <option *ngFor="let team of Teamlijst" (click)="getallplayers(team.name)"> {{team.name}}</option>
             
         </select>
         <select name="" id="" >
-            <option selected="selected">Select your player</option>
-            <option value="">Player1</option>
-            <option value="">Player2</option>
+            <option selected="selected" (click)="selectplayer(null)">Select your player</option>
+            <option *ngFor="let player of players" (click)="selectplayer(player.name)" > {{player.name}}</option>
+
             
         </select>
     </div>

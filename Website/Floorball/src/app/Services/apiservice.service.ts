@@ -15,6 +15,10 @@ export class ApiserviceService {
 
   }
 
+  get Allteams() : Observable<Iteam[]>{
+    return this.http.get<Iteam[]>("http://localhost:61379/api/v1/teams")
+  }
+
   Matchinfo(idinput : number) : Observable<Imatchinfo[]>
   {
     return this.http.get<Imatchinfo[]>("http://localhost:61379/api/v1/matches/" + idinput);
@@ -26,6 +30,11 @@ export class ApiserviceService {
   matchplayerstats(playername :string , matchid : number)  : Observable<Imatchplayerstat[]>
   {
     return this.http.get<Imatchplayerstat[]>("http://localhost:61379/api/v1/Data?playername="+ playername + "&matchid=" + matchid);
+  }
+
+  playerinfo(playername : string) : Observable<Iplayerinfo[]>
+  {
+    return this.http.get<Iplayerinfo[]>("http://localhost:61379/api/v1/players?playerName=" + playername);
   }
   
 }
@@ -84,6 +93,27 @@ export interface Imatchplayerstat {
   linear: Linear[];
   orient: Orient[];
   hits: number;
+}
+
+
+export interface ITeaminfo {
+  id: number;
+  name: string;
+  players?: any;
+  matches?: any;
+}
+
+export interface IMatches {
+  start: Date;
+  id: number;
+}
+
+export interface Iplayerinfo {
+  name: string;
+  icon: number;
+  team: ITeaminfo;
+  id: number;
+  matches: IMatches[];
 }
 
 
