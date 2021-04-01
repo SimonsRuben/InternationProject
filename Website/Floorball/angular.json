@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "Floorball"
+    }
+  },
+  "defaultProject": "Floorball",
+  "cli": {
+    "analytics": false
+  }
 }

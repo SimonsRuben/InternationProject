@@ -10,7 +10,6 @@ import { LivefeedComponent } from './livefeed/livefeed.component';
 import { RouterModule } from '@angular/router';
 import {HttpClientModule} from '@angular/common/http';
 
-
 @NgModule({
   declarations: [
     AppComponent,

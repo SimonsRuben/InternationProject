@@ -26,3 +26,6 @@ select{
 #teamselect{
     margin-right: 70px;
 }
+div.chart{
+    margin: auto;
+}

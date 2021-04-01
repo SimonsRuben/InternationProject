@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import * as CanvasJS from '../../../node_modules/canvasjs/dist/canvasjs.min.js';
 
 @Component({
   selector: 'app-playerstats',
@@ -15,6 +16,58 @@ export class PlayerstatsComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    let chartHighSwing = new CanvasJS.Chart("highSwing", {
+      title: {
+        text: "Highest Swingspeed"
+      },
+      data: [{
+          type: "line",
+          dataPoints: [
+            {y: 45},
+            {y: 53},
+            {y: 52},
+            {y: 57},
+            {y: 56},
+            {y: 57},
+            {y: 84}]
+        }]
+    });
+    let chartAverageSwing = new CanvasJS.Chart("averageSwing", {
+      title: {
+        text: "Average Swingspeed"
+      },
+      data: [{
+          type: "line",
+          dataPoints: [
+            {y: 35},
+            {y: 41},
+            {y: 39},
+            {y: 43},
+            {y: 45},
+            {y: 48},
+            {y: 60}]
+        }]
+    });
+    let chartHitsPerGame = new CanvasJS.Chart("hitsPerGame", {
+      title: {
+        text: "Hits Per Game"
+      },
+      data: [{
+          type: "line",
+          dataPoints: [
+            {y: 50},
+            {y: 76},
+            {y: 25},
+            {y: 91},
+            {y: 84},
+            {y: 55},
+            {y: 83}]
+        }]
+    });
+
+    chartHighSwing.render();
+    chartAverageSwing.render();
+    chartHitsPerGame.render();
   }
 
 }
