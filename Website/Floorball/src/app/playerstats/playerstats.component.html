@@ -13,6 +13,10 @@
                 <td>Team Name:</td>
                 <td><p>{{player.team.name}}</p></td>
             </tr>
+            <tr>
+                <td>total hits:</td>
+                <td><p>{{totalhits}}</p></td>
+            </tr>
         </table>
     </div>
     <div>
@@ -53,8 +57,21 @@
     </div>
 </main>
 <h2 style="text-align: center;">Player evolution</h2>
-<main>
-    <div><img [src]="graphicon" alt=""></div>
-    <div><img [src]="graphicon" alt=""></div>
-    <div><img [src]="graphicon" alt=""></div>
-</main>
+
+    <table id="match">
+        <tr>
+            <th>Match ID</th>
+            <th>hits  </th>
+            <th>accel </th>
+            <th>linear</th>
+            <th>orient</th>
+        </tr>
+        <tr *ngFor="let stat of stats">
+            <td>{{stat.id}}</td>
+            <td>{{stat.hits}}</td>
+            <td><p *ngFor="let acc of stat.accel"> X={{acc.x}} ,Y={{acc.y}} ,Z={{acc.z}}</p></td>
+            <td><p *ngFor="let acc of stat.linear"> X={{acc.x}} ,Y={{acc.y}} ,Z={{acc.z}}</p></td>
+            <td><p *ngFor="let acc of stat.orient"> X={{acc.x}} ,Y={{acc.y}} ,Z={{acc.z}}</p></td>
+
+        </tr>
+    </table>

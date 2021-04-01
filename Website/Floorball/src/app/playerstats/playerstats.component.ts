@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiserviceService, Imatch, Iplayer, Iplayerinfo, Iteam } from '../Services/apiservice.service';
+import { ApiserviceService, Imatch, Iplayer, Iplayerinfo, Iteam,Iplayerstats } from '../Services/apiservice.service';
 
 @Component({
   selector: 'app-playerstats',
@@ -17,6 +17,8 @@ export class PlayerstatsComponent implements OnInit {
 
   player : Iplayerinfo = null
 
+  stats : Iplayerstats[] = null
+  totalhits : number = 0
 
   constructor(private api : ApiserviceService) { }
 
@@ -45,7 +47,17 @@ export class PlayerstatsComponent implements OnInit {
 
       this.api.playerinfo(name).subscribe(d => {
         this.player = d[0];
-        console.log(this.player);
+        this.api.getstats(name).subscribe(d => {
+          this.stats = d;
+          
+          console.log(this.stats);
+          this.totalhits = 0;
+          for (let i = 0; i < this.stats.length; i++) {
+            this.totalhits += this.stats[i].hits;            
+            
+          }
+  
+        });
 
       });
     }

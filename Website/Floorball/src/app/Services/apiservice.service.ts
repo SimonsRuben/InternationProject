@@ -8,33 +8,40 @@ import { Observable } from 'rxjs';
 })
 export class ApiserviceService {
 
+  public readonly url : string = "http://localhost:61379"
+
   constructor(private http: HttpClient) { }
 
   get Matches() : Observable<Imatch[]>{
-    return this.http.get<Imatch[]>("http://localhost:61379/api/v1/matches");
+    return this.http.get<Imatch[]>(this.url + "/api/v1/matches");
 
   }
 
   get Allteams() : Observable<Iteam[]>{
-    return this.http.get<Iteam[]>("http://localhost:61379/api/v1/teams")
+    return this.http.get<Iteam[]>(this.url + "/api/v1/teams")
   }
 
   Matchinfo(idinput : number) : Observable<Imatchinfo[]>
   {
-    return this.http.get<Imatchinfo[]>("http://localhost:61379/api/v1/matches/" + idinput);
+    return this.http.get<Imatchinfo[]>(this.url + "/api/v1/matches/" + idinput);
   }
   teaminfo(teamname : string) : Observable<Iteam[]>
   {
-    return this.http.get<Iteam[]>("http://localhost:61379/api/v1/teams?teamName=" + teamname);
+    return this.http.get<Iteam[]>(this.url + "/api/v1/teams?teamName=" + teamname);
   }
   matchplayerstats(playername :string , matchid : number)  : Observable<Imatchplayerstat[]>
   {
-    return this.http.get<Imatchplayerstat[]>("http://localhost:61379/api/v1/Data?playername="+ playername + "&matchid=" + matchid);
+    return this.http.get<Imatchplayerstat[]>( this.url+"/api/v1/Data?playername="+ playername + "&matchid=" + matchid);
   }
 
   playerinfo(playername : string) : Observable<Iplayerinfo[]>
   {
-    return this.http.get<Iplayerinfo[]>("http://localhost:61379/api/v1/players?playerName=" + playername);
+    return this.http.get<Iplayerinfo[]>(this.url + "/api/v1/players?playerName=" + playername);
+  }
+
+  getstats(playername: string) :Observable<Iplayerstats[]>
+  {
+    return this.http.get<Iplayerstats[]>(this.url + "/api/v1/Data?playerName=" + playername);
   }
   
 }
@@ -115,5 +122,14 @@ export interface Iplayerinfo {
   id: number;
   matches: IMatches[];
 }
+export interface Iplayerstats {
+  match: Imatch;
+  id: number;
+  hits: number;
+  accel: Accel[];
+  linear: Linear[];
+  orient: Orient[];
+}
+
 
 
