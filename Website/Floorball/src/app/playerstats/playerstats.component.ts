@@ -19,6 +19,7 @@ export class PlayerstatsComponent implements OnInit {
 
   stats : Iplayerstats[] = null
   totalhits : number = 0
+  averagehits : number = 0
 
   constructor(private api : ApiserviceService) { }
 
@@ -56,6 +57,7 @@ export class PlayerstatsComponent implements OnInit {
             this.totalhits += this.stats[i].hits;            
             
           }
+          this.averagehits = this.totalhits/this.stats.length;
   
         });
 
