@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class ApiserviceService {
 
-  public readonly url : string = "http://localhost:61379"
+  public readonly url : string = "http://192.168.1.7:61379"
 
   constructor(private http: HttpClient) { }
 
