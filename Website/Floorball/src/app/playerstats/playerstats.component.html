@@ -20,14 +20,14 @@
         </table>
     </div>
     <div>
-        <select name="" id="teamselect" >
-            <option selected="selected"(click)="getallplayers(null)">Select your team</option>
-            <option *ngFor="let team of Teamlijst" (click)="getallplayers(team.name)"> {{team.name}}</option>
+        <select name="" id="teamselect" (change)="getallplayers($event)">
+            <option selected="selected"[value]="null">Select your team</option>
+            <option *ngFor="let team of Teamlijst" [value]="team.name"> {{team.name}}</option>
             
         </select>
-        <select name="" id="" >
-            <option selected="selected" (click)="selectplayer(null)">Select your player</option>
-            <option *ngFor="let player of players" (click)="selectplayer(player.name)" > {{player.name}}</option>
+        <select name="" id="" (change)="selectplayer($event)">
+            <option selected="selected" [value]="null">Select your player</option>
+            <option *ngFor="let player of players" [value]="player.name" > {{player.name}}</option>
 
             
         </select>

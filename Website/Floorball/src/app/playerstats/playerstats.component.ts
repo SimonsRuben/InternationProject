@@ -29,10 +29,10 @@ export class PlayerstatsComponent implements OnInit {
   }
 
 
-  getallplayers(name :string)
+  getallplayers(event?: any)
   {
-    if (name != null) {
-
+    var name = event.target.value;
+    if (name != null && name != "null") {
       this.api.teaminfo(name).subscribe(d => {
         this.players = d[0].players;
 
@@ -40,11 +40,10 @@ export class PlayerstatsComponent implements OnInit {
     }
 
   }
-  selectplayer(name :string)
+  selectplayer(event? : any)
   {
-    console.log(name)
-    if (name != null) {
-
+    var name = event.target.value;
+    if (name != null && name != "null") {
       this.api.playerinfo(name).subscribe(d => {
         this.player = d[0];
         this.api.getstats(name).subscribe(d => {
