@@ -22,7 +22,7 @@ namespace FloorballAPI.Controllers
         [HttpGet]
         public IActionResult GetData(string playerName, int? matchid) //Alle data voor een speler bij 1 match
         {
-            if (!string.IsNullOrWhiteSpace(playerName) || !(matchid == null || matchid < 0))
+            if (!string.IsNullOrWhiteSpace(playerName) && !(matchid == null || matchid < 0))
             {
                 if (context.Data.Any(d => d.Player.Name == playerName && d.Match.ID == matchid))
                 {
@@ -30,6 +30,14 @@ namespace FloorballAPI.Controllers
                     return Ok(data);
                 }
                 return NotFound();
+            }
+            if (!string.IsNullOrWhiteSpace(playerName))
+            {
+                if (context.Data.Any(d => d.Player.Name == playerName))
+                {
+                    var data = context.Data.Where(d => d.Player.Name == playerName).Include(d => d.Accel).Include(d => d.Linear).Include(d => d.Orient).Include(d => d.Match);// d.Match.Select(m => new { m.Start, m.ID });
+                    return Ok(data);
+                }
             }
             return NotFound();
         }
