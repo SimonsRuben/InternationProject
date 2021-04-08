@@ -10,7 +10,7 @@ namespace FloorballAPI
     {
         public static void Initialize(MatchContext context)
         {
-            //context.Database.EnsureDeleted();
+            context.Database.EnsureDeleted();
             context.Database.EnsureCreated();
             
             if (!context.Matches.Any())
@@ -47,6 +47,7 @@ namespace FloorballAPI
                 var player = new Player()
                 {
                     Name = "Bob",
+                    Active = true,
                     Matches = new List<Match>()
                 };
                 
@@ -71,6 +72,7 @@ namespace FloorballAPI
                 var match1 = new Match()
                 {
                     Start = DateTime.Now,
+                    Active = true,
                     Players = new List<Player>(),
                     Teams = new List<Team>(),
                     Data = new List<Data>()

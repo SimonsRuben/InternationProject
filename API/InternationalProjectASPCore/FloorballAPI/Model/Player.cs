@@ -14,6 +14,7 @@ namespace FloorballAPI.Model
         public List<Match> Matches { get; set; }
         [JsonIgnore]
         public Team Team { get; set; }
+        public bool Active { get; set; }
 
         //[JsonIgnore]
         //public List<Data> Data { get; set; }
