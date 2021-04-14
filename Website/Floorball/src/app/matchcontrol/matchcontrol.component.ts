@@ -12,6 +12,12 @@ export class MatchcontrolComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  StopMatch(){
+
+  }
+  CreateMatch(){
+    
+  }
 
   ResumePause()
   {
