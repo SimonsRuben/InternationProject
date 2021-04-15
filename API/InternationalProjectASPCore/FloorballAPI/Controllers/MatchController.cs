@@ -109,7 +109,7 @@ namespace FloorballAPI.Controllers
         }
         [Route("Matches/{id}")]
         [HttpPatch]
-        public IActionResult PatchMatch(int id, bool active) //Laat alle info over een specifieke match zien
+        public IActionResult PatchMatch(int id, bool active) //Om een match te activeren of te stoppen
         {
             if (context.Matches.Any(m => m.ID == id))
             {
@@ -119,6 +119,34 @@ namespace FloorballAPI.Controllers
                 return Ok(match.Active);
             }
             return NotFound();
+        }
+        [Route("Players/{id}")]
+        [HttpPatch]
+        public IActionResult PatchPlayer(int id, bool active) //Om een match te activeren of te stoppen
+        {
+            if (context.Players.Any(m => m.ID == id))
+            {
+                Player player = context.Players.Find(id);
+                player.Active = active;
+                context.SaveChanges();
+                return Ok(player.Active);
+            }
+            return NotFound();
+        }
+
+        [Route("ActiveMatch")]
+        [HttpGet]
+        public IActionResult GetActiveMatch()
+        {
+            var activeMatch = context.Matches.Where(m => m.Active == true).Select(m => new { m.ID, m.Start, m.Active, Teams = m.Teams.Select(t => t.Name), Players = m.Players.Select(p => new { p.Name, TeamName = p.Team.Name }) }).FirstOrDefault();
+            return Ok(activeMatch);
+        }
+        [Route("ActivePlayer")]
+        [HttpGet]
+        public IActionResult GetActivePlayer()
+        {
+            var activePlayer = context.Players.Where(m => m.Active == true).Select(p => new { p.Name, p.Icon, p.Team, p.ID, Matches = p.Matches.Select(m => new { m.Start, m.ID }) }).FirstOrDefault();
+            return Ok(activePlayer);
         }
     }
 }
