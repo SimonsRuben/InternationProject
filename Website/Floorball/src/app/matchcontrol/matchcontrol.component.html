@@ -1,17 +1,17 @@
 <table>
     <tr>
         <td rowspan="2"><button (click)="CreateMatch()">Start match</button></td>
-        <td><select name="" id="">
-            <option value="">Team1</option>
-            <option value="">Team2</option>
-            </select>
+        <td><select name="" id="teamselect" (change)="getallplayers($event)">
+            <option selected="selected"[value]="null">Select your team</option>
+            <option *ngFor="let team of Teamlijst" [value]="team.name"> {{team.name}}</option>
+        </select>
         </td>
     </tr>
     <tr>
 
-        <td><select name="" id="">
-            <option value="">Player1</option>
-            <option value="">Player2</option>
+        <td><select name="" id="" (change)="selectplayer($event)">
+            <option selected="selected" [value]="null">Select your player</option>
+            <option *ngFor="let player of players" [value]="player.name" > {{player.name}}</option>
         </select></td>
     </tr>
     <tr>
@@ -20,7 +20,7 @@
     </tr>
     <tr>
         <td rowspan="2"><button (click)="StopMatch()">Stop match</button></td>
-        <td><p>Name </p></td>
+        <td><p *ngIf="player != null">{{player.name}} </p></td>
     </tr>
     <tr>
 
