@@ -45,6 +45,7 @@ namespace FloorballAPI.Controllers
             }
             return NotFound();
         }
+
         [Route("Data")]
         [HttpPost]
         public IActionResult CreateDataPoint([FromBody] Data data)

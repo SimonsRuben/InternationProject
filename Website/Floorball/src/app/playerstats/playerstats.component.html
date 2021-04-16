@@ -13,23 +13,16 @@
                 <td>Team Name:</td>
                 <td><p>{{player.team.name}}</p></td>
             </tr>
-            <tr>
-                <td>total hits:</td>
-                <td><p>{{totalhits}}</p></td>
-            </tr>
         </table>
     </div>
     <div>
         <select name="" id="teamselect" (change)="getallplayers($event)">
             <option selected="selected"[value]="null">Select your team</option>
             <option *ngFor="let team of Teamlijst" [value]="team.name"> {{team.name}}</option>
-            
         </select>
         <select name="" id="" (change)="selectplayer($event)">
             <option selected="selected" [value]="null">Select your player</option>
             <option *ngFor="let player of players" [value]="player.name" > {{player.name}}</option>
-
-            
         </select>
     </div>
     <div>
@@ -47,11 +40,11 @@
             </tr>
             <tr>
                 <td>total hits</td>
-                <td><p>20</p></td>
+                <td><p>{{totalhits}}</p></td>
             </tr>
             <tr>
                 <td>Average hits per game</td>
-                <td><p>20</p></td>
+                <td><p>{{averagehits}}</p></td>
             </tr>
         </table>
     </div>

@@ -44,6 +44,11 @@ export class ApiserviceService {
     return this.http.get<Iplayerstats[]>(this.url + "/api/v1/Data?playerName=" + playername);
   }
   
+  creatematch(idinput : number) : Observable<number>
+  {
+    return this.http.post<any>(this.url + "/api/v1/Matches?playerId=" + idinput, null);
+  }
+
 }
 
 export interface Imatch {
