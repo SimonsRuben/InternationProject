@@ -41,7 +41,8 @@ namespace FloorballAPI.Controllers
             }
             else
             {
-                return Ok(context.Data.Include(d => d.Player.Name));
+                return StatusCode(403);
+                //return Ok(context.Data.Include(d => d.Player)); Giving back all data can create a massive data dump
             }
             return NotFound();
         }
