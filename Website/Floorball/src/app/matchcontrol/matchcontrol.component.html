@@ -8,22 +8,20 @@
         </td>
     </tr>
     <tr>
-
         <td><select name="" id="" (change)="selectplayer($event)">
             <option selected="selected" [value]="null">Select your player</option>
             <option *ngFor="let player of players" [value]="player.name" > {{player.name}}</option>
         </select></td>
     </tr>
     <tr>
-        <td><button (click)="ResumePause()" [innerHtml]="resumetext">Pause match</button></td>
+        <td><button (click)="ResumePause()" [innerHtml]="resumetext">Pause match</button><p *ngIf="this.currentmatch != null">Current match: {{this.currentmatch}} </p></td>
         <td><img src="https://jwatt.org/svg/tmp/embedded-sizing/embedded-px-px.png" alt="" ></td>
     </tr>
     <tr>
         <td rowspan="2"><button (click)="StopMatch()">Stop match</button></td>
-        <td><p *ngIf="player != null">{{player.name}} </p></td>
+        <td><p *ngIf="player != null">Current player: {{player.name}} </p></td>
     </tr>
     <tr>
-
-        <td><button>Update</button></td>
+        <td><button (click)="UpdatePlayer()">Update</button></td>
     </tr>
 </table>

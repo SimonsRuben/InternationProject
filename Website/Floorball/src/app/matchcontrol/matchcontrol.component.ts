@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiserviceService, Imatch, Iplayer, Iplayerinfo, Iteam,Iplayerstats } from '../Services/apiservice.service';
+import { ApiserviceService, Imatch, Iplayer, Iplayerinfo, Iteam, Imatchinfo, Iplayerstats } from '../Services/apiservice.service';
 
 @Component({
   selector: 'app-matchcontrol',
@@ -9,17 +9,30 @@ import { ApiserviceService, Imatch, Iplayer, Iplayerinfo, Iteam,Iplayerstats } f
 export class MatchcontrolComponent implements OnInit {
 
   resumetext: string ="Pause match";
-  constructor(private api : ApiserviceService) { }
+  constructor(public api : ApiserviceService) { }
   players : Iplayer[]
   Teamlijst : Iteam[] = null
   player : Iplayerinfo = null
+  currentmatch : number = null
+
 
   ngOnInit(): void {
     this.api.Allteams.subscribe(d => {
       this.Teamlijst = d;
     });
+    this.api.getactivematch().subscribe(d => {
+      var match : Imatchinfo;
+      match = d;
+      this.currentmatch = match.id;
+    });
+    this.api.getactiveplayer().subscribe(d => {
+      this.player = d;
+    });
   }
 
+  UpdatePlayer(){
+    this.api.setactiveplayer(this.player.id,true).subscribe();
+  }
 
   getallplayers(event?: any)
   {
@@ -42,19 +55,26 @@ export class MatchcontrolComponent implements OnInit {
     }
   }
   StopMatch(){
-
+    this.api.pausematch(this.currentmatch,false).subscribe();
+    this.currentmatch = null;
   }
+
   CreateMatch(){
-    this.api.creatematch(this.player.id).subscribe();
+    this.api.creatematch(this.player.id).subscribe(
+      d => this.currentmatch = d
+    );
+    this.resumetext = "Pause match"
   }
 
   ResumePause()
   {
     if (this.resumetext == "Pause match") {
       this.resumetext = "Resume match";
-      
+      this.api.pausematch(this.currentmatch,false).subscribe();
     } else {
       this.resumetext = "Pause match";
+      if(this.currentmatch != null)
+        this.api.pausematch(this.currentmatch,true).subscribe();
     }
 
   }

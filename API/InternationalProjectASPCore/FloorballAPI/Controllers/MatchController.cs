@@ -70,6 +70,14 @@ namespace FloorballAPI.Controllers
             Match match = new Match();
             match.Start = DateTime.Now;
             Player player = context.Players.Find(playerId);
+            foreach (var person in context.Players)
+            {
+                person.Active = false;
+            }
+            foreach (var amatch in context.Matches)
+            {
+                amatch.Active = false;
+            }
             if (player != null)
             {
                 player.Active = true;
@@ -82,7 +90,7 @@ namespace FloorballAPI.Controllers
             match.Data = new List<Data>();
             context.Matches.Add(match);
             context.SaveChanges();
-            return Created("Match created", match);
+            return Created("Match created", match.ID);
         }
 
         /*
@@ -113,6 +121,10 @@ namespace FloorballAPI.Controllers
         {
             if (context.Matches.Any(m => m.ID == id))
             {
+                foreach (var amatch in context.Matches)
+                {
+                    amatch.Active = false;
+                }
                 Match match = context.Matches.Find(id);
                 match.Active = active;
                 context.SaveChanges();
@@ -122,12 +134,20 @@ namespace FloorballAPI.Controllers
         }
         [Route("Players/{id}")]
         [HttpPatch]
-        public IActionResult PatchPlayer(int id, bool active) //Om een match te activeren of te stoppen
+        public IActionResult PatchPlayer(int id, bool active) //Om een player te activeren of te stoppen
         {
             if (context.Players.Any(m => m.ID == id))
             {
-                Player player = context.Players.Find(id);
+                foreach (var person in context.Players)
+                {
+                    person.Active = false;
+                }
+                Player player = context.Players.Include(p => p.Team).Where(p => p.ID == id).FirstOrDefault();
                 player.Active = active;
+                var match = context.Matches.Where(m => m.Active == true).Include(m => m.Players).Include(m => m.Teams).FirstOrDefault();
+                match.Players.Add(player);
+                match.Teams.Add(player.Team);
+
                 context.SaveChanges();
                 return Ok(player.Active);
             }

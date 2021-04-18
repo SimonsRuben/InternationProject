@@ -49,6 +49,26 @@ export class ApiserviceService {
     return this.http.post<any>(this.url + "/api/v1/Matches?playerId=" + idinput, null);
   }
 
+  pausematch(idinput : number , activate : boolean)
+  {
+    return this.http.patch<any>(this.url + "/api/v1/Matches/" + idinput + "?active=" + activate, null);
+  }
+
+  getactivematch() : Observable<Imatchinfo>
+  {
+    return this.http.get<Imatchinfo>(this.url + "/api/v1/ActiveMatch");
+  }
+
+  getactiveplayer() : Observable<Iplayerinfo>
+  {
+    return this.http.get<Iplayerinfo>(this.url + "/api/v1/ActivePlayer");
+  }
+
+  setactiveplayer(idinput : number , activate : boolean)
+  {
+    return this.http.patch<Iplayerinfo>(this.url + "/api/v1/Players/" + idinput + "?active=" + activate, null);
+  }
+
 }
 
 export interface Imatch {

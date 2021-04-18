@@ -44,6 +44,7 @@ namespace FloorballAPI
                     Time = DateTime.Now
                 };
 
+
                 var player = new Player()
                 {
                     Name = "Bob",
