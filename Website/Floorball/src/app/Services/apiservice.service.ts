@@ -31,7 +31,7 @@ export class ApiserviceService {
   }
   matchplayerstats(playername :string , matchid : number)  : Observable<Imatchplayerstat[]>
   {
-    return this.http.get<Imatchplayerstat[]>( this.url+"/api/v1/Data?playername="+ playername + "&matchid=" + matchid);
+    return this.http.get<Imatchplayerstat[]>( this.url+"/api/v1/Data?playerName="+ playername + "&matchid=" + matchid);
   }
 
   playerinfo(playername : string) : Observable<Iplayerinfo[]>
@@ -47,6 +47,16 @@ export class ApiserviceService {
   creatematch(idinput : number) : Observable<number>
   {
     return this.http.post<any>(this.url + "/api/v1/Matches?playerId=" + idinput, null);
+  }
+
+  activePlayer() : Observable<Iplayer>
+  {
+    return this.http.get<Iplayer>(this.url + "/api/v1/ActivePlayer");
+  }
+
+  activeMatch() : Observable<Imatchinfo>
+  {
+    return this.http.get<Imatchinfo>(this.url + "/api/v1/ActiveMatch");
   }
 
 }
