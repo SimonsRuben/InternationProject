@@ -93,10 +93,11 @@ export class LivefeedComponent implements OnInit {
     this.chartAcc.render();
   }
 
-  totalMilliseconds(time: string) : number
+  totalMilliseconds(time: string) : Number
   {
     var splitString = time.split('T');
     var times = splitString[1].split(':');
-    return parseInt(times[0]) * 3600 + parseInt(times[1]) * 60 + parseFloat(times[2]);
+    var dates = splitString[0].split('/');
+    return (parseInt(times[0]) * 3600 + parseInt(times[1]) * 60 + parseInt(times[2].split('.')[0])) + parseFloat(times[2].split('.')[1]) / 10000000;
   }
 }
