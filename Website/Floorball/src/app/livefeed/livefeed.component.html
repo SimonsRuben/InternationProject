@@ -8,38 +8,37 @@
             </tr>
             <tr>
                 <td>Player name:</td>
-                <td><p>test name</p></td>
+                <td><p>{{player.name}}</p></td>
             </tr>
             <tr>
                 <td>Team Name:</td>
-                <td><p>testname</p></td>
-            </tr>
-            <tr>
-                <td>Age:</td>
-                <td><p>20</p></td>
+                <td><p>{{playerDetailed.team.name}}</p></td>
             </tr>
             <tr>
                 <td>Highest swing speed</td>
-                <td><p>test speed</p></td>
+                <td><p>{{highestLinear | number:'1.1-2'}} m/s</p></td>
             </tr>
             <tr>
                 <td>Average swing speed</td>
-                <td><p>test speed</p></td>
+                <td><p>{{totalLinear / cumLinear.length | number:'1.1-2'}} m/s</p></td>
             </tr>
             <tr>
                 <td>total hits</td>
-                <td><p>20</p></td>
-            </tr>
-            <tr>
-                <td>Average hits per game</td>
-                <td><p>20</p></td>
+                <td><p>{{hits[hits.length - 1].y}}</p></td>
             </tr>
         </table>
     </div>
-    <div>
-        <div id="graphAcc" style="width: 500px;"></div>
+    <div style="width: 100%; display: flex;">
+        <div style="height: 100%; width: 50%;">
+            <div id="graphAcc" style="height: 50%; width: 100%;"></div>
+            <div id="graphLin" style="height: 50%; width: 100%;"></div>
+        </div>
+        <div style="height: 100%; width: 50%;">
+            <div id="graphHit" style="height: 50%; width: 100%;"></div>
+            <div id="graphOri" style="height: 50%; width: 100%;"></div>
+        </div>
     </div>
-    <div >
+    <!--<div >
         <img style="margin-top: 10%;" width="100%" [src]="floorballmap" alt="">
-    </div>
+    </div>-->
 </main>
