@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class ApiserviceService {
 
-  public readonly url : string = "https://internationalprojectapi.azurewebsites.net/"
+  public readonly url : string = "http://localhost:61379"
 
   constructor(private http: HttpClient) { }
 
@@ -31,7 +31,7 @@ export class ApiserviceService {
   }
   matchplayerstats(playername :string , matchid : number)  : Observable<Imatchplayerstat[]>
   {
-    return this.http.get<Imatchplayerstat[]>( this.url+"/api/v1/Data?playername="+ playername + "&matchid=" + matchid);
+    return this.http.get<Imatchplayerstat[]>( this.url+"/api/v1/Data?playerName="+ playername + "&matchid=" + matchid);
   }
 
   playerinfo(playername : string) : Observable<Iplayerinfo[]>
@@ -49,24 +49,14 @@ export class ApiserviceService {
     return this.http.post<any>(this.url + "/api/v1/Matches?playerId=" + idinput, null);
   }
 
-  pausematch(idinput : number , activate : boolean)
+  activePlayer() : Observable<Iplayer>
   {
-    return this.http.patch<any>(this.url + "/api/v1/Matches/" + idinput + "?active=" + activate, null);
+    return this.http.get<Iplayer>(this.url + "/api/v1/ActivePlayer");
   }
 
-  getactivematch() : Observable<Imatchinfo>
+  activeMatch() : Observable<Imatchinfo>
   {
     return this.http.get<Imatchinfo>(this.url + "/api/v1/ActiveMatch");
-  }
-
-  getactiveplayer() : Observable<Iplayerinfo>
-  {
-    return this.http.get<Iplayerinfo>(this.url + "/api/v1/ActivePlayer");
-  }
-
-  setactiveplayer(idinput : number , activate : boolean)
-  {
-    return this.http.patch<Iplayerinfo>(this.url + "/api/v1/Players/" + idinput + "?active=" + activate, null);
   }
 
 }
@@ -155,6 +145,3 @@ export interface Iplayerstats {
   linear: Linear[];
   orient: Orient[];
 }
-
-
-
