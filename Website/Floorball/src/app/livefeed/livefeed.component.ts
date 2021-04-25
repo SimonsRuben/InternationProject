@@ -188,7 +188,7 @@ export class LivefeedComponent implements OnInit {
       this.hits.push({
         x: this.totalMilliseconds(this.stats.start.toString()),
         y: this.stats.hits
-      })
+      });
     }
   }
 
