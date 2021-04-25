@@ -5,39 +5,84 @@
 <br>
 
 <main>
-    <div>
-        <img [src]="graphicon" alt="">
-        <p>Graphs</p>
+    <div *ngIf="team1 != null && team2 != null">
+        <table style="display: inline-block;">
+            <tr>
+                <th>{{team1.name}}</th>
+            </tr>
+            <tr *ngFor="let player of team1.players">
+                <td><button (click)="getmatchplayer(player.name,team1.name)">{{player.name}}</button></td>
+            </tr>
+        </table>
+        <table style="display: inline-block;">
+            <tr>
+                <th>{{team2.name}}</th>
+            </tr>
+            <tr *ngFor="let player of team2.players">
+                <td><button (click)="getmatchplayer(player.name,team2.name)">{{player.name}}</button></td>
+            </tr>
+        </table>
     </div>
     <div>
         <p> Search <input type="text" name="" id=""></p>
         
         <table id="match">
             <tr>
-                <th>Team</th>
-                <th>Name</th>
-                <th>Shots</th>
-                <th>Average shot speed</th>
+                <th>Start hour</th>
+                <th>Date </th>
+                <th>Team 1</th>
+                <th>Team 2</th>
+                <th>Match link</th>
             </tr>
-            <tr>
-                <td>Tea</td>
-                <td>Name</td>
-                <td>Shots</td>
-                <td>Average shot speed</td>
-            </tr>
-            <tr>
-                <td>Team</td>
-                <td>Name</td>
-                <td>Shots</td>
-                <td>Average shot speed</td>
-            </tr>
-            <tr>
-                <td>Team</td>
-                <td>Name</td>
-                <td>Shots</td>
-                <td>Average shot speed</td>
+            <tr *ngFor="let match of matcheslijst">
+                <td>{{match.start | date : 'h:mm a'}}</td>
+                <td>{{match.start | date : 'MMMM d, y'}}</td>
+                <td>{{match.teams[0]}}</td>
+                <td>{{match.teams[1]}}</td>
+                <td><button  (click)="viewmatch(match.id)">View match</button></td>
             </tr>
         </table>
 
     </div>
 </main>
+<section *ngIf="playerstats !=null" style="display: flex;">
+    <div style="display: flexbox;">
+        <img [src]="photoicon" alt="" width="auto" height="200px">
+        <table style="border: 1px black solid;">
+            <tr>
+                <th colspan="2" >Player information</th>
+            </tr>
+            <tr>
+                <td>Player name:</td>
+                <td><p>{{playerstats.name}}</p></td>
+            </tr>
+            <tr>
+                <td>Team Name:</td>
+                <td><p>{{pickedteamname}}</p></td>
+            </tr>
+            <tr>
+                <td>Hits:</td>
+                <td><p>{{playerstats.hits}}</p></td>
+            </tr>
+        </table>
+    </div>
+    <div style="display: flexbox;">
+        <table style="border: 1px solid black;">
+            <tr>
+                <td>Accel</td>
+                <td style="border: 1px solid black;" *ngFor="let acc of playerstats.accel"> X={{acc.x}} ,Y={{acc.y}} ,Z={{acc.z}}</td>
+            </tr>
+            <tr>
+                <td>Linear</td>
+                <td style="border: 1px solid black;" *ngFor="let lin of playerstats.linear"> X={{lin.x}} ,Y={{lin.y}} ,Z={{lin.z}}</td>
+            </tr>
+            <tr>
+                <td>Orient</td>
+                <td style="border: 1px solid black;" *ngFor="let  orien of playerstats.orient"> X={{orien.x}} ,Y={{orien.y}} ,Z={{orien.z}}</td>
+            </tr>
+        </table>
+
+    </div>
+    
+
+</section>

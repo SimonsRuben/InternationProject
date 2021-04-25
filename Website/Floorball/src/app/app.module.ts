@@ -8,6 +8,7 @@ import { HistoryComponent } from './history/history.component';
 import { PlayerstatsComponent } from './playerstats/playerstats.component';
 import { LivefeedComponent } from './livefeed/livefeed.component';
 import { RouterModule } from '@angular/router';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { RouterModule } from '@angular/router';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     RouterModule.forRoot([
       {path: "playerstats", component:PlayerstatsComponent},
       {path: "history", component:HistoryComponent},
