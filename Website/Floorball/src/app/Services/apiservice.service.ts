@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class ApiserviceService {
 
-  public readonly url : string = "http://localhost:61379"
+  public readonly url : string = "https://internationalprojectapi.azurewebsites.net/"
 
   constructor(private http: HttpClient) { }
 
