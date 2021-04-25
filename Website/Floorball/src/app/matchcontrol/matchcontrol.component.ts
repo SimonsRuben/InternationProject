@@ -20,12 +20,12 @@ export class MatchcontrolComponent implements OnInit {
     this.api.Allteams.subscribe(d => {
       this.Teamlijst = d;
     });
-    this.api.getactivematch().subscribe(d => {
+    this.api.activeMatch().subscribe(d => {
       var match : Imatchinfo;
       match = d;
       this.currentmatch = match.id;
     });
-    this.api.getactiveplayer().subscribe(d => {
+    this.api.activePlayer().subscribe(d => {
       this.player = d;
     });
   }

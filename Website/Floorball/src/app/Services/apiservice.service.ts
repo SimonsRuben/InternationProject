@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class ApiserviceService {
 
-  public readonly url : string = "http://localhost:61379"
+  public readonly url : string = "https://internationalprojectapi.azurewebsites.net/"
 
   constructor(private http: HttpClient) { }
 
@@ -48,15 +48,25 @@ export class ApiserviceService {
   {
     return this.http.post<any>(this.url + "/api/v1/Matches?playerId=" + idinput, null);
   }
-
-  activePlayer() : Observable<Iplayer>
+  
+  pausematch(idinput : number , activate : boolean)
   {
-    return this.http.get<Iplayer>(this.url + "/api/v1/ActivePlayer");
+    return this.http.patch<any>(this.url + "/api/v1/Matches/" + idinput + "?active=" + activate, null);
+  }
+
+  activePlayer() : Observable<Iplayerinfo>
+  {
+    return this.http.get<Iplayerinfo>(this.url + "/api/v1/ActivePlayer");
   }
 
   activeMatch() : Observable<Imatchinfo>
   {
     return this.http.get<Imatchinfo>(this.url + "/api/v1/ActiveMatch");
+  }
+
+  setactiveplayer(idinput : number , activate : boolean)
+  {
+    return this.http.patch<Iplayerinfo>(this.url + "/api/v1/Players/" + idinput + "?active=" + activate, null);
   }
 
 }
