@@ -6,18 +6,16 @@ using System.Threading.Tasks;
 
 namespace FloorballAPI.Model
 {
-    public class Player
+    public class Match
     {
-        public string Name { get; set; }
         public int ID { get; set; }
-        public int Icon { get; set; }
-        public List<Match> Matches { get; set; }
         [JsonIgnore]
-        public Team Team { get; set; }
+        public List<Team> Teams { get; set; }
+        [JsonIgnore]
+        public List<Player> Players { get; set; }
+        [JsonIgnore]
+        public List<Data> Data { get; set; }
+        public DateTime Start { get; set; }
         public bool Active { get; set; }
-
-        //[JsonIgnore]
-        //public List<Data> Data { get; set; }
-
     }
 }

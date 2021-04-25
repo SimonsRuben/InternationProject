@@ -1,0 +1,70 @@
+<main>
+    <div>
+        <img [src]="photoicon" alt="" width="auto" height="200px">
+        <table *ngIf="player != null" >
+            <tr>
+                <th colspan="2" >Player information</th>
+            </tr>
+            <tr>
+                <td>Player name:</td>
+                <td><p>{{player.name}}</p></td>
+            </tr>
+            <tr>
+                <td>Team Name:</td>
+                <td><p>{{player.team.name}}</p></td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <select name="" id="teamselect" (change)="getallplayers($event)">
+            <option selected="selected"[value]="null">Select your team</option>
+            <option *ngFor="let team of Teamlijst" [value]="team.name"> {{team.name}}</option>
+        </select>
+        <select name="" id="" (change)="selectplayer($event)">
+            <option selected="selected" [value]="null">Select your player</option>
+            <option *ngFor="let player of players" [value]="player.name" > {{player.name}}</option>
+        </select>
+    </div>
+    <div>
+        <table>
+            <tr>
+                <th colspan="2">Player stats</th>
+            </tr>
+            <tr>
+                <td>Highest swing speed</td>
+                <td><p>test speed</p></td>
+            </tr>
+            <tr>
+                <td>Average swing speed</td>
+                <td><p>test speed</p></td>
+            </tr>
+            <tr>
+                <td>total hits</td>
+                <td><p>{{totalhits}}</p></td>
+            </tr>
+            <tr>
+                <td>Average hits per game</td>
+                <td><p>{{averagehits}}</p></td>
+            </tr>
+        </table>
+    </div>
+</main>
+<h2 style="text-align: center;">Player evolution</h2>
+
+    <table id="match">
+        <tr>
+            <th>Match ID</th>
+            <th>hits  </th>
+            <th>accel </th>
+            <th>linear</th>
+            <th>orient</th>
+        </tr>
+        <tr *ngFor="let stat of stats">
+            <td>{{stat.id}}</td>
+            <td>{{stat.hits}}</td>
+            <td><p *ngFor="let acc of stat.accel"> X={{acc.x}} ,Y={{acc.y}} ,Z={{acc.z}}</p></td>
+            <td><p *ngFor="let acc of stat.linear"> X={{acc.x}} ,Y={{acc.y}} ,Z={{acc.z}}</p></td>
+            <td><p *ngFor="let acc of stat.orient"> X={{acc.x}} ,Y={{acc.y}} ,Z={{acc.z}}</p></td>
+
+        </tr>
+    </table>

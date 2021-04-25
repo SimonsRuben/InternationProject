@@ -1,0 +1,50 @@
+main{
+    display: flex;
+}
+div{
+    display: flexbox;
+    flex-grow: 1;
+    border: 2px black solid;
+    text-align: center;
+}
+table{
+    display: inline-block;
+    border-collapse: collapse;
+    border: 1px black solid;
+}
+tr{
+    border: 1px black solid;
+}
+td{
+    width: 200px;
+    border: 1px black solid;
+}
+select{
+    width: 200px;
+    text-align: center;
+}
+#teamselect{
+    margin-right: 70px;
+}
+#match {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  #match td, #match th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  #match tr:nth-child(even){background-color: #f2f2f2;}
+  
+  #match tr:hover {background-color: #ddd;}
+  
+  #match th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+  }
