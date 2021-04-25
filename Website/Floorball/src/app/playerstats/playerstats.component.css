@@ -26,6 +26,9 @@ select{
 #teamselect{
     margin-right: 70px;
 }
+div.chart{
+    border: none;
+}
 #match {
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
