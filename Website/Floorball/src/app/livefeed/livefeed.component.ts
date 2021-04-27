@@ -42,10 +42,10 @@ export class LivefeedComponent implements OnInit {
 
   ngOnInit(): void {
     this.api.activePlayer().subscribe(d => this.player = d);
-    this.api.playerinfo(this.player.name).subscribe(d => this.playerDetailed = d[0]);
+    //this.api.playerinfo(this.player.name).subscribe(d => this.playerDetailed = d[0]);
     this.api.activeMatch().subscribe(d => this.match = d);
 
-    this.statUpdate();
+    //this.statUpdate();
 
     this.chartAcc = new CanvasJS.Chart("graphAcc",{
       title:{
@@ -194,9 +194,14 @@ export class LivefeedComponent implements OnInit {
 
   UpdateChart(): void
   {
-    this.statUpdate();
+    if (this.player != null && this.player.name != null) {
+      this.statUpdate();
+    }
 
-    this.dataSeriesUpdate();
+    if (this.stats != null && this.player != null) {
+      this.dataSeriesUpdate();
+    }
+    
 
     this.chartAcc.render();
     this.chartLin.render();

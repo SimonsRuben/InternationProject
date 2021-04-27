@@ -8,23 +8,23 @@
             </tr>
             <tr>
                 <td>Player name:</td>
-                <td><p>{{player.name}}</p></td>
+                <td><p *ngIf="player != null || player != undefined">{{player.name}}</p></td>
             </tr>
             <tr>
                 <td>Team Name:</td>
-                <td><p>{{playerDetailed.team.name}}</p></td>
+                <td><p *ngIf="playerDetailed.team != null || playerDetailed.team != undefined">{{playerDetailed.team.name}}</p></td>
             </tr>
             <tr>
                 <td>Highest swing speed</td>
-                <td><p>{{highestLinear | number:'1.1-2'}} m/s</p></td>
+                <td><p *ngIf="highestLinear != null">{{highestLinear | number:'1.1-2'}} m/s</p></td>
             </tr>
             <tr>
                 <td>Average swing speed</td>
-                <td><p>{{totalLinear / cumLinear.length | number:'1.1-2'}} m/s</p></td>
+                <td><p *ngIf="totalLinear != null && cumLinear != null">{{totalLinear / cumLinear.length | number:'1.1-2'}} m/s</p></td>
             </tr>
             <tr>
                 <td>total hits</td>
-                <td><p>{{hits[hits.length - 1].y}}</p></td>
+                <td><p *ngIf="hits != null ">{{hits[hits.length - 1].y}}</p></td>
             </tr>
         </table>
     </div>
