@@ -54,10 +54,13 @@ export class HistoryComponent implements OnInit {
         this.team1 = d[0];      //console.log(this.matcheslijst);
         console.log(this.team1);
       });
-      this.api.teaminfo(temp2).subscribe(d => {
-        this.team2 = d[0]; 
-        console.log(this.team2);
-      });
+      if (temp2 != undefined) {
+        this.api.teaminfo(temp2).subscribe(d => {
+          this.team2 = d[0]; 
+          console.log(this.team2);
+        });
+      }
+      
  
       
     });

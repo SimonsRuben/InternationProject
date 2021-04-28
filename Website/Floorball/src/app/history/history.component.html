@@ -5,7 +5,7 @@
 <br>
 
 <main>
-    <div *ngIf="team1 != null && team2 != null">
+    <div *ngIf="team1 != null">
         <table style="display: inline-block;">
             <tr>
                 <th>{{team1.name}}</th>
@@ -14,7 +14,7 @@
                 <td><button (click)="getmatchplayer(player.name,team1.name)">{{player.name}}</button></td>
             </tr>
         </table>
-        <table style="display: inline-block;">
+        <table style="display: inline-block;" *ngIf="team2 != null">
             <tr>
                 <th>{{team2.name}}</th>
             </tr>
